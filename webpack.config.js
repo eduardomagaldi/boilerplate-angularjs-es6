@@ -33,5 +33,8 @@ module.exports = {
 	},
 	plugins: [
 		new ExtractTextPlugin("css/[name].min.css")
-	]
+	],
+	devServer: {
+		contentBase: "public"
+	}
 };

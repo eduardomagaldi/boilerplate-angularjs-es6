@@ -3,19 +3,17 @@
 
 // require('./main.styl');
 
-// let o = {
-// 	a: 1,
-// 	b: 2,
-// 	c: 3
-// };
+let o = {
+	a: 1,
+	b: 2,
+	c: 3
+};
 
-// console.log({
-// 	...o,
-// 	c: 'bla'
-// });
+console.log({
+	...o,
+	c: 'bla4'
+});
 
-// if (module.hot) {
-// 	require('webpack/hot/dev-server');
-// }
-
-console.log('bla');
+if (module.hot) {
+	require('webpack/hot/dev-server');
+}
