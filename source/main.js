@@ -14,6 +14,8 @@
 // 	c: 'bla'
 // });
 
-if (module.hot) {
-	require('webpack/hot/dev-server');
-}
+// if (module.hot) {
+// 	require('webpack/hot/dev-server');
+// }
+
+console.log('bla');
