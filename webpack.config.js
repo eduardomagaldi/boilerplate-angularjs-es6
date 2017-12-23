@@ -38,16 +38,23 @@ module.exports = {
     ],
     output: {
         path: path.join(__dirname, 'public'),
-        filename: "[name].min.js"
+        filename: "js/[name].min.js"
     },
     module: {
-        loaders: [{
-            test: /\.styl$/,
-            loader: stylusLoader
-        }]
+        loaders: [
+            {
+                test: /\.js$/,
+                loader: 'babel-loader',
+                exclude: /node_modules/
+            },
+            {
+                test: /\.styl$/,
+                loader: stylusLoader
+            }
+        ]
     },
     plugins: [
-        new ExtractTextPlugin("[name].css")
+        new ExtractTextPlugin("css/[name].min.css")
     ]
 };
 
