@@ -1,19 +1,19 @@
 // var css = require('!raw!stylus!./main.styl'); // Just the CSS
 // var css = require('./main.styl'); // CSS with processed url(...)s
 
-let o = {
-	a: 1,
-	b: 2,
-	c: 3
-};
+// require('./main.styl');
 
-console.log({
-	...o,
-	c: 'bla'
-});
+// let o = {
+// 	a: 1,
+// 	b: 2,
+// 	c: 3
+// };
+
+// console.log({
+// 	...o,
+// 	c: 'bla'
+// });
 
 if (module.hot) {
 	require('webpack/hot/dev-server');
 }
-
-require('./main.styl');
