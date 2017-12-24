@@ -11,7 +11,7 @@ let o = {
 
 console.log({
 	...o,
-	c: 'bla4'
+	c: 'ble2'
 });
 
 if (module.hot) {

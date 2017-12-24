@@ -38,3 +38,55 @@ module.exports = {
 		contentBase: "public"
 	}
 };
+
+
+
+
+
+// const path = require('path');
+
+
+
+// const config = {
+
+//                 context: path.join(__dirname),
+
+//                 entry: [
+
+//                                 './source/main.js',
+
+//                 ],
+
+//                 output: {
+
+//                                 path: path.join(__dirname, 'public2', 'js'),
+
+//                                 filename: 'main.min.js',
+
+//                                 publicPath: '/js',
+
+//                 },
+
+//                 module: {
+
+//                                 loaders: [
+
+//                                                 { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
+
+//                                                 { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ }
+
+//                                 ]
+
+//                 },
+
+//                 devServer: {
+
+//                                 contentBase: "public2"
+
+//                 }
+
+// };
+
+
+
+// module.exports = config;
