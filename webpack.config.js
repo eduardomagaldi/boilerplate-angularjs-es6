@@ -11,6 +11,17 @@ module.exports = {
 		path: path.join(__dirname, 'public'),
 		filename: "js/[name].min.js"
 	},
+
+	// entry: {
+	// 	'js/main.min.js': './source/main.js',
+	// 	// 'js/vendor.js': ['react', 'react-dom'],
+	// 	'css/main.min.css': './source/maincss.styl',
+	// },
+	// output: {
+	// 	path: path.join(__dirname, 'public'),
+	// 	filename: '[name]',
+	// },
+
 	module: {
 		loaders: [
 			{
@@ -18,13 +29,19 @@ module.exports = {
 				loader: 'babel-loader',
 				exclude: /node_modules/
 			},
-			{
-				test: /\.styl$/,
+			{ //main.css bundle (unobtrusive css)
+				test: /main\.styl$/,
 				loader: ExtractTextPlugin.extract({
 					fallback: 'style-loader',
 					use: ['css-loader', 'stylus-loader']
 				})
 			},
+			{
+				test: /\.styl$/,
+				loader: 'style-loader!css-loader!stylus-loader',
+				exclude: /main\.styl$/
+			},
+
 			{
 				test: /\.(png|woff|woff2|eot|ttf|svg)$/,
 				loader: 'url-loader'
@@ -32,10 +49,10 @@ module.exports = {
 		]
 	},
 	plugins: [
-		new ExtractTextPlugin("css/[name].min.css")
+		new ExtractTextPlugin('css/[name].min.css')
 	],
 	devServer: {
-		contentBase: "public"
+		contentBase: 'public'
 	}
 };
 
