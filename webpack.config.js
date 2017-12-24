@@ -1,5 +1,5 @@
 const path = require('path'),
-	// webpack = require('webpack'),
+	webpack = require('webpack'),
 	ExtractTextPlugin = require('extract-text-webpack-plugin'),
 	cliArg = process.argv,
 	prod = cliArg.indexOf('-p') > -1 || cliArg.indexOf('--production') > -1,
@@ -42,7 +42,7 @@ module.exports = {
 				test: mainStyleRegEx,
 				loader: prod ? bundleCSSLoader : lazyCSSLoader
 			},
-			{
+			{ //all other css required with javascript and lazy loaded
 				test: /\.styl$/,
 				loader: lazyCSSLoader,
 				exclude: mainStyleRegEx
@@ -55,61 +55,17 @@ module.exports = {
 		]
 	},
 	plugins: [
-		new ExtractTextPlugin('css/[name].min.css')
+		new ExtractTextPlugin('css/[name].min.css'),
+		new webpack.NamedModulesPlugin()
 	],
 	devServer: {
-		contentBase: 'public'
+		contentBase: 'public',
+		watchContentBase: true,
+		before(app) {
+			app.get('/css/main.min.css', function(req, res) {
+				res.set('Content-Type', 'text/css');
+				res.send('//overwritten in dev mode to work with HMR\n//this same file is required via javascript in main.js');
+			});
+		}
 	}
 };
-
-
-
-
-
-// const path = require('path');
-
-
-
-// const config = {
-
-//                 context: path.join(__dirname),
-
-//                 entry: [
-
-//                                 './components/main.js',
-
-//                 ],
-
-//                 output: {
-
-//                                 path: path.join(__dirname, 'public2', 'js'),
-
-//                                 filename: 'main.min.js',
-
-//                                 publicPath: '/js',
-
-//                 },
-
-//                 module: {
-
-//                                 loaders: [
-
-//                                                 { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
-
-//                                                 { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ }
-
-//                                 ]
-
-//                 },
-
-//                 devServer: {
-
-//                                 contentBase: "public2"
-
-//                 }
-
-// };
-
-
-
-// module.exports = config;
