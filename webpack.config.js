@@ -57,7 +57,16 @@ module.exports = {
 	},
 	plugins: [
 		new ExtractTextPlugin('css/[name].min.css'),
-		new webpack.NamedModulesPlugin()
+		new webpack.NamedModulesPlugin(),
+		new webpack.ProvidePlugin({
+			$: 'jquery',
+			jQuery: 'jquery',
+			'window.jQuery': 'jquery',
+			Popper: ['popper.js', 'default'],
+			// In case you imported plugins individually, you must also require them here:
+			// Util: "exports-loader?Util!bootstrap/js/dist/util",
+			Dropdown: "exports-loader?Dropdown!bootstrap/js/dropdown",
+		})
 	],
 	devServer: {
 		contentBase: __dirname + '/public/',

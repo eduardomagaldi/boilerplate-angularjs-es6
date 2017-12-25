@@ -5,6 +5,18 @@ if (module.hot) {
 	require('./main.styl'); //require css via javascript if in dev mode
 }
 
+// import jQuery from 'jquery';
+// import bootstrapjs from 'bootstrap/dist/js/bootstrap.min.js';
+
+// import $ from 'jquery';
+// import jQuery from 'jquery';
+// // window.$ = $;
+// // window.jQuery = $;
+// import 'bootstrap/dist/js/bootstrap.min.js';
+
+// import 'bootstrap/js/dist/util';
+import 'bootstrap/js/dropdown';
+
 let o = {
 	a: 1,
 	b: 2,
