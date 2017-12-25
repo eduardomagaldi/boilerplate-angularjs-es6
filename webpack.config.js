@@ -11,10 +11,16 @@ const path = require('path'),
 	});
 
 module.exports = {
-	entry: [
-		'./components/main/main.js',
-		'./components/main/main.styl'
-	],
+	// entry: [
+	// 	'./components/main/main.js',
+	// 	'./components/main/main.styl'
+	// ],
+
+	entry: {
+		'main': './components/main/main.js',
+		'main': './components/main/main.styl',
+		// 'bootstrap': './components/main/styles/bootstrap.less',
+	},
 	output: {
 		path: path.join(__dirname, 'public'),
 		filename: 'js/[name].min.js',
@@ -39,15 +45,33 @@ module.exports = {
 				exclude: /node_modules/
 			},
 
-			{ //main.css required with javascript in dev and bundled (unobtrusive css) in prod
+			{ //main.styl required with javascript in dev and bundled (unobtrusive css) in prod
 				test: mainStyleRegEx,
 				loader: prod ? bundleCSSLoader : lazyCSSLoader
 			},
-			{ //all other css required with javascript and lazy loaded
+			{ //all other styl required with javascript and lazy loaded
 				test: /\.styl$/,
 				loader: lazyCSSLoader,
 				exclude: mainStyleRegEx
 			},
+
+			// {//adding bootstrap css
+			// 	test: /\.less$/,
+			// 	use: [
+			// 		{
+			// 			loader: "style-loader"
+			// 		},
+			// 		{
+			// 			loader: "css-loader"
+			// 		},
+			// 		// {
+			// 		// 	loader: "postcss-loader"
+			// 		// },
+			// 		{
+			// 			loader: "less-loader"
+			// 		}
+			// 	]
+			// },
 
 			{
 				test: /\.(png|woff|woff2|eot|ttf|svg)$/,
