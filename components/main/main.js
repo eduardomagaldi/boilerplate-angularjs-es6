@@ -1,21 +1,9 @@
-// var css = require('!raw!stylus!./main.styl'); // Just the CSS
-// var css = require('./main.styl'); // CSS with processed url(...)s
-
 if (module.hot) {
-	require('./main.styl'); //require css via javascript if in dev mode
+	require('./main.styl'); //require css via javascript if dev mode
 }
 
-// import jQuery from 'jquery';
-// import bootstrapjs from 'bootstrap/dist/js/bootstrap.min.js';
-
-// import $ from 'jquery';
-// import jQuery from 'jquery';
-// // window.$ = $;
-// // window.jQuery = $;
-// import 'bootstrap/dist/js/bootstrap.min.js';
-
-// import 'bootstrap/js/dist/util';
 import 'bootstrap/js/dropdown';
+import 'bootstrap/js/collapse';
 
 let o = {
 	a: 1,
