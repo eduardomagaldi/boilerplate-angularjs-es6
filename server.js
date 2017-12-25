@@ -6,6 +6,3 @@ var express = require('express'),
 server.use('/public', express.static(__dirname + '/public'));
 
 server.listen(8080);
-
-
-console.log('bla1');
