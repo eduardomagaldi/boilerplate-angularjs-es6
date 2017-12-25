@@ -1,9 +1,12 @@
 const path = require('path'),
 	webpack = require('webpack'),
 	ExtractTextPlugin = require('extract-text-webpack-plugin'),
+
 	cliArg = process.argv,
 	prod = cliArg.indexOf('-p') > -1 || cliArg.indexOf('--production') > -1,
+
 	mainStyleRegEx = /main\.styl$/,
+
 	lazyCSSLoader = 'style-loader!css-loader!stylus-loader',
 	bundleCSSLoader = ExtractTextPlugin.extract({
 		fallback: 'style-loader',
@@ -15,6 +18,13 @@ module.exports = {
 		'./components/main/main.js',
 		'./components/main/main.styl'
 	],
+
+	// entry: {
+	// 	'main': './components/main/main.js',
+	// 	'main': './components/main/main.styl',
+	// 	// 'bootstrap': './components/main/styles/bootstrap.less',
+	// },
+
 	output: {
 		path: path.join(__dirname, 'public'),
 		filename: 'js/[name].min.js',
