@@ -17,7 +17,8 @@ module.exports = {
 	],
 	output: {
 		path: path.join(__dirname, 'public'),
-		filename: "js/[name].min.js"
+		filename: 'js/[name].min.js',
+		// publicPath: 'http://localhost:8080/public/',
 	},
 
 	// entry: {
@@ -59,10 +60,11 @@ module.exports = {
 		new webpack.NamedModulesPlugin()
 	],
 	devServer: {
-		contentBase: 'public',
+		contentBase: __dirname + '/public/',
+		// publicPath: __dirname + '/public/',
 		watchContentBase: true,
 		before(app) {
-			app.get('/css/main.min.css', function(req, res) {
+			app.get('*/css/main.min.css', function(req, res) {
 				res.set('Content-Type', 'text/css');
 				res.send('//overwritten in dev mode to work with HMR\n//this same file is required via javascript in main.js');
 			});
