@@ -31,7 +31,11 @@ console.log({
 
 var myApp = angular.module('hello', ['ui.router']);
 
-myApp.config(function($stateProvider) {
+myApp.config(config);
+
+config.$inject = ['$stateProvider'];
+
+function config($stateProvider) {
 	// An array of state definitions
 	var states = [
 		{ name: 'hello', url: '/hello', component: 'hello' },
@@ -42,9 +46,7 @@ myApp.config(function($stateProvider) {
 			url: '/people',
 			component: 'people',
 			resolve: {
-				people: function(PeopleService) {
-					return PeopleService.getAllPeople();
-				}
+				people: people
 			}
 		},
 
@@ -53,27 +55,40 @@ myApp.config(function($stateProvider) {
 			url: '/{personId}',
 			component: 'person',
 			resolve: {
-				person: function(people, $stateParams) {
-					return people.find(function(person) {
-						return person.id === $stateParams.personId;
-					});
-				}
+				person: person
 			}
 		}
 	]
+
+	people.$inject = ['PeopleService'];
+
+	function people(PeopleService) {
+		return PeopleService.getAllPeople();
+	}
+
+	person.$inject = ['people', '$stateParams'];
+
+	function person(people, $stateParams) {
+		return people.find(function(person) {
+			return person.id === $stateParams.personId;
+		});
+	}
 
 	// Loop over the state definitions and register them
 	states.forEach(function(state) {
 		$stateProvider.state(state);
 	});
-});
+}
 
+myApp.run(run);
 
-myApp.run(function($http, $uiRouter) {
+run.$inject = ['$http', '$uiRouter'];
+
+function run($http, $uiRouter) {
 	// var Visualizer = window['ui-router-visualizer'].Visualizer;
 	// $uiRouter.plugin(Visualizer);
 	$http.get('data/people.json', { cache: true });
-});
+}
 
 angular.module('hello').component('hello', {
 	template:  '<h3>{{$ctrl.greeting}} galaxy!</h3>' +
@@ -110,7 +125,13 @@ angular.module('hello').component('people', {
 						'</div>'
 });
 
-angular.module('hello').service('PeopleService', function($http) {
+angular.module('hello').service('PeopleService', peopleService);
+
+peopleService.$inject = ['$http'];
+
+function peopleService($http) {
+	console.log('$http', $http);
+
 	var service = {
 		getAllPeople: function() {
 			return $http.get('data/people.json', { cache: true }).then(function(resp) {
@@ -130,7 +151,7 @@ angular.module('hello').service('PeopleService', function($http) {
 	}
 
 	return service;
-});
+}
 
 angular.module('hello').component('person', {
 	bindings: { person: '<' },
