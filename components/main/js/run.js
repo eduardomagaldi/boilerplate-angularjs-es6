@@ -1,19 +1,22 @@
-import 'angular';
-import '@uirouter/angularjs';
+angular.module('app').run(($rootScope, $state, $location) => Object.assign($rootScope, { $state, $location }));
 
-angular.module('app').run(run);
 
-run.$inject = ['$rootScope'];
-function run($rootScope) {
-	console.log('main run2', $rootScope);
+// import 'angular';
+// import '@uirouter/angularjs';
 
-	$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams, error) {
-		console.error('$stateChangeStart', event, toState, toParams, fromState, fromParams, error);
-	});
+// angular.module('app').run(run);
 
-	$rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
-		console.error('$stateChangeError', event, toState, toParams, fromState, fromParams, error);
-	});
+// run.$inject = ['$rootScope'];
+// function run($rootScope) {
+// 	console.log('main run2', $rootScope);
 
-	// $http.get('data/people.json', {cache: true});
-}
+// 	$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams, error) {
+// 		console.error('$stateChangeStart', event, toState, toParams, fromState, fromParams, error);
+// 	});
+
+// 	$rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
+// 		console.error('$stateChangeError', event, toState, toParams, fromState, fromParams, error);
+// 	});
+
+// 	// $http.get('data/people.json', {cache: true});
+// }

@@ -1,5 +1,3 @@
-"use babel";
-
 let lazyModule = angular.module('lazy', ['ui.router']);
 
 lazyModule.config($stateProvider => {

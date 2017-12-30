@@ -14,7 +14,7 @@
 		<link rel="stylesheet" href="css/main.min.css">
 	</head>
 
-	<body ng-app="demonstrateissue">
+	<body ng-app="app">
 		<a ui-sref="home">home</a>
 		<a ui-sref="home.child">home.child</a>
 
@@ -30,20 +30,6 @@
 			Current State: <b>{{$state.current.name }}</b> <br>
 			Current Params: <b>{{$state.params | json }}</b><br>
 		</div>
-
-		<style>
-			body {  margin-top: 7em; }
-			.link {  text-decoration: underline; color: blue; }
-			.link:hover { cursor: pointer; }
-			 .header {
-				position: fixed;
-				right: 0;
-				top: 1.5em;
-				height: 6em;
-				width: 100%;
-				border-bottom: 1px solid gray;
-			}
-		</style>
 
 		<script src="js/main.min.js"></script>
 	</body>
