@@ -8,6 +8,10 @@ Go to [public folder](https://eduardomagaldi.github.io/boilerplate-angularjs-es6
 
 ```npm run prod```
 
+## About
+
+Inspired by John Papa's guide.
+
 ## Dependencies
 
 - Angular.js

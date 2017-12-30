@@ -1,3 +1,5 @@
+/* eslint-env node */
+
 const path = require('path'),
 	webpack = require('webpack'),
 	ExtractTextPlugin = require('extract-text-webpack-plugin'),
@@ -16,7 +18,9 @@ const path = require('path'),
 module.exports = {
 	entry: [
 		'./components/main/main.js',
-		'./components/main/main.styl'
+		'./components/main/main.styl',
+
+		// './components/future/future.js',
 	],
 
 	// entry: {

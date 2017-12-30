@@ -13,7 +13,7 @@
 
 		<link rel="stylesheet" href="css/main.min.css">
 	</head>
-	<body>
+	<body ng-app="app">
 		<!--[if lte IE 9]>
 			<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
 		<![endif]-->
@@ -58,11 +58,13 @@
 			<div class="column-xs-12">
 
 
-				<div ng-app="hello">
+				<div>
 					<div class="nav">
 						<a ui-sref="hello" ui-sref-active="active">Hello</a>
 						<a ui-sref="about" ui-sref-active="active">About</a>
 						<a ui-sref="people" ui-sref-active="active">People</a>
+						<a ui-sref="future" ui-sref-active="active">future</a>
+						<a ui-sref="bla" ui-sref-active="active">bla</a>
 					</div>
 
 					<ui-view></ui-view>
