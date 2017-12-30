@@ -18,7 +18,7 @@ const path = require('path'),
 module.exports = {
 	entry: [
 		'./components/main/main.js',
-		'./components/main/main.styl',
+		// './components/main/main.styl',
 
 		// './components/future/future.js',
 	],
@@ -66,6 +66,11 @@ module.exports = {
 			{
 				test: /\.(png|woff|woff2|eot|ttf|svg)$/,
 				loader: 'url-loader'
+			},
+
+			{
+				test: /\.html$/,
+				loader: 'html-loader'
 			}
 		]
 	},
