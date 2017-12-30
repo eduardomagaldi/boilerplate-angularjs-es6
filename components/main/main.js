@@ -1,95 +1,60 @@
-if (module.hot) {
-	require('./main.styl'); //require css via javascript if dev mode
-}
+import 'angular';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
-import 'bootstrap/js/dropdown';
-import 'bootstrap/js/collapse';
-import './js/app';
-import './js/config';
-import './js/run';
+// Here's a skeleton app.  Fork this plunk, or create your own from scratch.
+var app = angular.module('demonstrateissue', ['ui.router', 'oc.lazyLoad']);
 
+// Empty config block.  Define your example states here.
+app.config(function($stateProvider, $urlRouterProvider) {
+	$urlRouterProvider.otherwise('/home')
 
+	$stateProvider.state({
+		name: 'home',
+		url: '/home',
+		component: 'home',
+		resolve: { homeData: () => 'HOME DATA' }
+	});
 
+	$stateProvider.state({
+		name: 'home.child',
+		url: '/child',
+		component: 'child',
+		resolve: { childData: () => 'CHILD DATA' }
+	});
 
-
-import '../hello/hello';
-
-
-
-
-
-let o = {
-	a: 1,
-	b: 2,
-	c: 3
-};
-
-console.log({
-	...o,
-	c: 'ble7'
+	$stateProvider.state({
+		name: 'lazy.**',
+		url: '/lazy',
+		lazyLoad: (transition) =>
+				transition.injector().get('$ocLazyLoad').load('_lazyModule.js')
+		// lazyLoad: function(transition) {
+		// 	const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
+		// 	return import('../../lazy/lazy.js')
+		// 		.then(mod => {
+		// 			$ocLazyLoad.load(mod.appFutureModule);
+		// 		});
+		// }
+	});
 });
 
-angular.module('app').component('about', {
-	template: '<h3>Its the UI-Router "app Galaxy" app!</h3>'
-});
+app.component('home', {
+	bindings: { homeData: '<' },
+	controller: function() { },
+	template: `
+	<h1>home state loaded: {{ $ctrl.homeData }}</h1>
+	<div ui-view></div>
+`});
 
-angular.module('app').component('people', {
-	bindings: { people: '<' },
+app.component('child', {
+	bindings: { childData: '<' },
+	controller: function($scope) { },
+	template: `
+	<h1>child state loaded: {{ $ctrl.childData }}</h1>
+	<div ui-view></div>
+`});
 
-	template: '<div class="flex-h">' +
-						'  <div class="people">' +
-						'    <h3>Some people:</h3>' +
-						'    <ul>' +
-						'      <li ng-repeat="person in $ctrl.people">' +
-						'        <a ui-sref-active="active" ui-sref="people.person({ personId: person.id })">' +
-						'          {{person.name}}' +
-						'        </a>' +
-						'      </li>' +
-						'    </ul>' +
-						'  </div>' +
-						'  <ui-view></ui-view>' +
-						'</div>'
-});
 
-angular.module('app').service('PeopleService', peopleService);
+console.log("Scripts loading... ");
 
-peopleService.$inject = ['$http'];
-
-function peopleService($http) {
-	var service = {
-		getAllPeople: function() {
-			return $http.get('data/people.json', { cache: true }).then(function(resp) {
-				return resp.data;
-			});
-		},
-
-		getPerson: function(id) {
-			function personMatchesParam(person) {
-				return person.id === id;
-			}
-
-			return service.getAllPeople().then(function (people) {
-				return people.find(personMatchesParam)
-			});
-		}
-	}
-
-	return service;
-}
-
-angular.module('app').component('person', {
-	bindings: { person: '<' },
-	template: '<h3>A person!</h3>' +
-
-			'<div>Name: {{$ctrl.person.name}}</div>' +
-			'<div>Id: {{$ctrl.person.id}}</div>' +
-			'<div>Company: {{$ctrl.person.company}}</div>' +
-			'<div>Email: {{$ctrl.person.email}}</div>' +
-			'<div>Address: {{$ctrl.person.address}}</div>' +
-
-			'<button ui-sref="people">Close</button>'
-});
-
-// if (module.hot) {
-// 	require('webpack/hot/dev-server');
-// }
+app.run(($rootScope, $state, $location) => Object.assign($rootScope, { $state, $location }));

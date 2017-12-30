@@ -64,11 +64,10 @@ function config($stateProvider) {
 			url: '/future',
 			lazyLoad: function(transition) {
 				const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
-				return System.import('../../future/future.js')
-				.then(mod => {
-					console.warn(mod);
-					$ocLazyLoad.load(mod.appFutureModule);
-				});//
+				return import('../../future/future.js')
+					.then(mod => {
+						$ocLazyLoad.load(mod.appFutureModule);
+					});
 			}
 		}
 	];

@@ -3,8 +3,17 @@ import '@uirouter/angularjs';
 
 angular.module('app').run(run);
 
-run.$inject = [];
-function run() {
-	console.log('main run');
+run.$inject = ['$rootScope'];
+function run($rootScope) {
+	console.log('main run2', $rootScope);
+
+	$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams, error) {
+		console.error('$stateChangeStart', event, toState, toParams, fromState, fromParams, error);
+	});
+
+	$rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
+		console.error('$stateChangeError', event, toState, toParams, fromState, fromParams, error);
+	});
+
 	// $http.get('data/people.json', {cache: true});
 }
