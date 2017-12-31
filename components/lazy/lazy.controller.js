@@ -1,3 +1,5 @@
-module.exports = () => {
-	console.log('controller');
+module.exports = function() {
+	const vm = this;
+
+	vm.bla = 'ble';
 };

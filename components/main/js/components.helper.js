@@ -12,7 +12,9 @@ module.exports = {
 		angular.module(options.moduleName)
 			.component(options.name, {
 				template: options.template,
-				controller: options.controller
+				// controller: options.controller.bind(this),
+				controller: options.controller,
+				controllerAs: 'vm'
 			})
 
 			.config(['$stateProvider', function($stateProvider) {
@@ -20,6 +22,8 @@ module.exports = {
 					name: options.name
 				});
 			}]);
+
+
 
 		return subModule;
 	}
