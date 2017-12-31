@@ -9,8 +9,6 @@ angular.module('app').run(run);
 
 run.$inject = ['$transitions'];
 function run($transitions) {
-	console.log('main run');
-
 	$transitions.onSuccess({}, (event, toState) => {
 		console.log('onSuccess', event, toState);
 	});

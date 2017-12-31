@@ -1,29 +1,10 @@
-require('./lazy.styl');
-import template from './lazy.html';
+import componentsHelper from '../main/js/components.helper';
 
-const componentName = 'lazy',
-	subModule = angular.module('app.' + componentName, ['ui.router']);
+const name = 'lazy',
+	template = require('./' + name + '.html'),
+	controller = require('./' + name + '.controller'),
+	moduleName = 'app.' + name;
 
-// export default function setComponent(componentName) {
-const subModuleName = 'app.' + componentName;
+require('./' + name + '.styl');
 
-console.log('subModuleName', subModuleName);
-
-angular.module(subModuleName)
-	.component(componentName, {
-		template: template,
-		controller: function() {
-			console.log(componentName + ' controller');
-		}
-	})
-
-	.config(['$stateProvider', function($stateProvider) {
-		$stateProvider.state({
-			name: 'lazy',
-			url: '/lazy',
-			component: 'lazy'
-		});
-	}]);
-// }
-
-export {subModule};
+module.exports = componentsHelper.setComponent({name, template, controller, moduleName});
