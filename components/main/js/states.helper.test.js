@@ -38,10 +38,10 @@ describe('statesHelper', function() {
 
 			args = spy.firstCall.args[0];
 
-			expect(args.name).to.equal('statename.**');
-			expect(args.lazyLoad).to.be.a('function');
-			expect(args.component).to.equal(undefined);
-			expect(args.url).to.equal('/statename');
+			chai.expect(args.name).to.equal('statename.**');
+			chai.expect(args.lazyLoad).to.be.a('function');
+			chai.expect(args.component).to.equal(undefined);
+			chai.expect(args.url).to.equal('/statename');
 		});
 
 		it('should overwrite all default properties', function() {
@@ -59,10 +59,10 @@ describe('statesHelper', function() {
 
 			args = spy.firstCall.args[0];
 
-			expect(args.name).to.equal('statename');
-			expect(args.component).to.equal('special-component');
-			expect(args.url).to.equal('/my-special-url');
-			expect(args.anotherProperty).to.equal(true);
+			chai.expect(args.name).to.equal('statename');
+			chai.expect(args.component).to.equal('special-component');
+			chai.expect(args.url).to.equal('/my-special-url');
+			chai.expect(args.anotherProperty).to.equal(true);
 		});
 	});
 });

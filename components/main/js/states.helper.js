@@ -23,10 +23,9 @@ module.exports = {
 		function lazyLoad(transition) {
 			const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
 			return System.import('../../' + options.name + '/' + options.name + '.js')
-				.then(mod => {
-					console.log('$ocLazyLoad.load:', mod);
-
-					$ocLazyLoad.load(mod);
+				.then(moduleName => {
+					console.log('$ocLazyLoad.load:', moduleName);
+					$ocLazyLoad.load(angular.module(moduleName));
 				});
 		}
 	}

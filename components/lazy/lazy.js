@@ -7,9 +7,21 @@ const name = 'lazy',
 
 require('./' + name + '.styl');
 
-module.exports = componentsHelper.setComponent({
+
+componentsHelper.setModule({
+	moduleName
+});
+
+componentsHelper.setComponent({
 	name,
 	template,
 	controller,
 	moduleName
+})
+
+componentsHelper.setConfig({
+	name,
+	moduleName
 });
+
+module.exports = moduleName;

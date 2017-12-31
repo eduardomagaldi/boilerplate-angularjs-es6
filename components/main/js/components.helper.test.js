@@ -1,20 +1,11 @@
 import componentsHelper from './components.helper';
 
 describe('componentsHelper', function() {
-	var spy;
-
-	describe('setComponent', function() {
-		// beforeEach(function() {
-		// 	spyComponent = sinon.spy(angular, 'component');
-
-		// });
-
-		it('should create sub module correctly', function() {
+	describe('setModule', function() {
+		it('should create module correctly', function() {
 			const spyModule = sinon.spy(angular, 'module');
 
-			componentsHelper.setComponent({moduleName: 'mn'});
-
-			// spyModule
+			componentsHelper.setModule({moduleName: 'mn'});
 
 			chai.assert(
 				spyModule.calledWithExactly(
@@ -23,45 +14,65 @@ describe('componentsHelper', function() {
 				)
 			);
 		});
+	});
 
-		// it('should set lazy state correctly', function() {
-		// 	let args;
+	describe('setComponent', function() {
+		it('should create component correctly', function() {
+			const spyComponent = sinon.spy(angular.module('mn'), 'component');
 
-		// 	statesHelper.setState(
-		// 		mockStateProvider,
-		// 		{
-		// 			name: 'statename',
-		// 			lazy: true
-		// 		}
-		// 	);
+			componentsHelper.setComponent({
+				name: 'compName',
+				moduleName: 'mn',
+				template: 't',
+				controller: 'c'
+			});
 
-		// 	args = spy.firstCall.args[0];
+			chai.assert(
+				spyComponent.calledWithExactly(
+					'compName',
+					{
+						template: 't',
+						controller: 'c',
+						controllerAs: 'vm'
+					}
+				)
+			);
+		});
+	});
 
-		// 	expect(args.name).to.equal('statename.**');
-		// 	expect(args.lazyLoad).to.be.a('function');
-		// 	expect(args.component).to.equal(undefined);
-		// 	expect(args.url).to.equal('/statename');
-		// });
+	describe('setConfig', function() {
+		it('should run config correctly with default function', function() {
+			const spyConfig = sinon.spy(angular.module('mn'), 'config');
+			let args;
 
-		// it('should overwrite all default properties', function() {
-		// 	let args;
+			componentsHelper.setConfig({
+				moduleName: 'mn'
+			});
 
-		// 	statesHelper.setState(
-		// 		mockStateProvider,
-		// 		{
-		// 			name: 'statename',
-		// 			component: 'special-component',
-		// 			url: '/my-special-url',
-		// 			anotherProperty: true
-		// 		}
-		// 	);
+			chai.expect(spyConfig.calledOnce).to.equal(true);
 
-		// 	args = spy.firstCall.args[0];
+			args = spyConfig.firstCall.args[0];
 
-		// 	expect(args.name).to.equal('statename');
-		// 	expect(args.component).to.equal('special-component');
-		// 	expect(args.url).to.equal('/my-special-url');
-		// 	expect(args.anotherProperty).to.equal(true);
-		// });
+			chai.expect(args).to.be.a('function');
+		});
+
+		it('should run config correctly with passed function', function() {
+			let spyConfig2;
+			const func = function() {};
+
+			componentsHelper.setModule({moduleName: 'mn2'});
+
+			spyConfig2 = sinon.spy(angular.module('mn2'), 'config');
+
+			componentsHelper.setConfig({
+				moduleName: 'mn2',
+				config: func
+			});
+
+			chai.assert(spyConfig2.calledOnce);
+			chai.assert(
+				spyConfig2.calledWithExactly(func)
+			);
+		});
 	});
 });
