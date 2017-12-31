@@ -13,34 +13,10 @@ function config(
 		name: 'lazy'
 	});
 
-
-
-	console.log('$stateProvider', $stateProvider);
-
 	$urlRouterProvider.otherwise('/');
 }
 
 function setState($stateProvider, options) {
-
-	// $stateProvider.state({
-	// 	name: 'lazy.**',
-	// 	url: '/lazy',
-	// 	// templateUrl: '../../' + options.name + '/' + options.name + '.html',
-	// 	// template: require('../../' + options.name + '/' + options.name + '.html'),
-	// 	lazyLoad: function(transition) {
-	// 		const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
-
-	// 		// return System.import('../../lazy/lazy.js');
-
-	// 		return System.import('../../lazy/lazy.js')
-	// 			.then(mod => {
-	// 				console.log('mod', mod);
-
-	// 				$ocLazyLoad.load(mod.subModule);
-	// 			});
-	// 	}
-	// });
-
 	const defaultOptions = {
 		url: '/' + options.name,
 		lazyLoad: function(transition) {
@@ -64,8 +40,6 @@ function setState($stateProvider, options) {
 		...options,
 		name: name
 	};
-
-	console.log('resultOptions', resultOptions);
 
 	$stateProvider.state(resultOptions);
 }
