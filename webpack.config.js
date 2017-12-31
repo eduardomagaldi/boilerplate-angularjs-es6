@@ -16,18 +16,18 @@ const path = require('path'),
 	});
 
 module.exports = {
-	entry: [
-		'./components/main/main.js',
-		// './components/main/main.styl',
+	// entry: [
+	// 	'./components/main/main.js',
+	// 	// './components/main/main.styl',
 
-		// './components/future/future.js',
-	],
+	// 	'./components/main/tests.js',
+	// ],
 
-	// entry: {
-	// 	'main': './components/main/main.js',
-	// 	'main': './components/main/main.styl',
-	// 	// 'bootstrap': './components/main/styles/bootstrap.less',
-	// },
+	entry: {
+		main: './components/main/main.js',
+		tests: './components/main/tests.js',
+		styles: './components/main/main.styl'
+	},
 
 	output: {
 		path: path.join(__dirname, 'public'),

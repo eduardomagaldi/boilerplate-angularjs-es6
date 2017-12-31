@@ -19,7 +19,14 @@
 		"angular": false,
 		"$": false,
 		"module": false,
-		"System": false
+		"System": false,
+		"chai": false,
+		"describe": false,
+		"beforeEach": false,
+		"sinon": false,
+		"expect": false,
+		"window": false,
+		"it": false
 	},
 	"rules": {
 		"indent": [

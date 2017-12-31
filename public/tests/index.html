@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="vendor/mocha.css" rel="stylesheet" />
+		<style>
+			h1, h2 {
+				line-height: 2;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div id="mocha"></div>
+		</div>
+
+		<!-- library scripts -->
+		<script src="vendor/mocha.js"></script>
+		<script src="vendor/chai.js"></script>
+		<script src="vendor/sinon.js"></script>
+		<script src="vendor/angular.min.js"></script>
+		<script>
+			mocha.setup({
+				"ui": "bdd",
+				"reporter": "html"
+			});
+		</script>
+		<script src="vendor/angular-mocks.js"></script>
+		<script src="vendor/angular.min.js"></script>
+
+		<!-- project scripts -->
+		<script src="app.js"></script>
+		<script src="simpleService.js"></script>
+		<script src="simpleController.js"></script>
+
+		<!-- tests -->
+		<!-- <script src="simpleService.spec.js"></script> -->
+		<!-- <script src="simpleController.spec.js"></script> -->
+
+		<script src="../js/tests.min.js"></script>
+		<script>
+			mocha.run();
+		</script>
+	</body>
+</html>
