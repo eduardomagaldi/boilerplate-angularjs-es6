@@ -7,7 +7,7 @@ module.exports = {
 			name = options.name;
 
 		if (options.lazy) {
-			name = options.name + '.**';
+			name += '.**';
 			defaultOptions.lazyLoad = lazyLoad;
 		} else {
 			defaultOptions.component = options.name;

@@ -81,6 +81,7 @@
 		"space-before-blocks": "error",
 		"radix": "error",
 
-		"angular/function-type": [2, "named"]
+		"angular/function-type": [2, "named"],
+		"angular/module-getter": 0
 	}
 }

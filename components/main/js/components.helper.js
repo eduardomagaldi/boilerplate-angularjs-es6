@@ -2,12 +2,11 @@ import statesHelper from './states.helper';
 
 module.exports = {
 	setComponent: (options) => {
-		let subModule = angular.module(
-			options.moduleName,
-			[
-				'ui.router'
-			]
-		);
+		const dependencies = options.dependencies || ['ui.router'],
+			subModule = angular.module(
+				options.moduleName,
+				dependencies
+			);
 
 		angular.module(options.moduleName)
 			.component(options.name, {
@@ -23,8 +22,6 @@ module.exports = {
 				});
 			}]);
 
-
-
 		return subModule;
 	}
-}
+};

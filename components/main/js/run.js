@@ -1,16 +1,11 @@
-// angular.module('app').run(run);
-
-// angular.module('app').run(($rootScope, $state, $location) => Object.assign($rootScope, { $state, $location }));
-
-// // import 'angular';
-// // import '@uirouter/angularjs';
-
 angular.module('app').run(run);
 
-run.$inject = ['$transitions'];
-function run($transitions) {
-	$transitions.onSuccess({}, (event, toState) => {
-		console.log('onSuccess', event, toState);
+run.$inject = ['$transitions', '$rootScope'];
+function run($transitions, $rootScope) {
+	$transitions.onSuccess({}, ($transition) => {
+		console.log('onSuccess', $transition.$to().name);
+		$rootScope.stateName = $transition.$to().name;
+		$rootScope.stateNameClass = 'state-' + $transition.$to().name;
 	});
 
 	$transitions.onEnter({}, function($state, $transition) {
