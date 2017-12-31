@@ -1,6 +1,5 @@
+require('./lazy.styl');
 import template from './lazy.html';
-
-console.log('template', template);
 
 const componentName = 'lazy',
 	subModule = angular.module('app.' + componentName, ['ui.router']);
@@ -12,7 +11,6 @@ console.log('subModuleName', subModuleName);
 
 angular.module(subModuleName)
 	.component(componentName, {
-		// templateUrl: 'components/hello/hello.html',
 		template: template,
 		controller: function() {
 			console.log(componentName + ' controller');
@@ -27,8 +25,5 @@ angular.module(subModuleName)
 		});
 	}]);
 // }
-
-
-
 
 export {subModule};

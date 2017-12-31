@@ -10,29 +10,51 @@ function config(
 	$urlRouterProvider
 ) {
 	setState($stateProvider, {
+		name: 'home',
+		url: '/',
+		template: '<h1>Home</h1>',
+		lazy: false
+	});
+
+	setState($stateProvider, {
 		name: 'lazy'
+	});
+
+	$stateProvider.onInvalid(($to$, $from$) => {
+		console.error('onInvalid', $to$, $from$);
 	});
 
 	$urlRouterProvider.otherwise('/');
 }
 
-function setState($stateProvider, options) {
-	const defaultOptions = {
-		url: '/' + options.name,
-		lazyLoad: function(transition) {
-			const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
-			return System.import('../../' + options.name + '/' + options.name + '.js')
-				.then(mod => {
-					$ocLazyLoad.load(mod.subModule);
-				});
-		}
-	};
 
-	let resultOptions,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function setState($stateProvider, options) {
+	let defaultOptions = {
+			url: '/' + options.name,
+			// lazyLoad: lazyLoad
+		},
+		resultOptions,
 		name = options.name;
 
 	if (options.lazy === undefined || options.lazy) {
 		name = options.name + '.**';
+		defaultOptions.lazyLoad = lazyLoad;
 	}
 
 	resultOptions = {
@@ -41,5 +63,17 @@ function setState($stateProvider, options) {
 		name: name
 	};
 
+	console.log('resultOptions', resultOptions);
+
 	$stateProvider.state(resultOptions);
+
+	lazyLoad.$inject = ['transition'];
+	function lazyLoad(transition) {
+		const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
+		return System.import('../../' + options.name + '/' + options.name + '.js')
+			.then(mod => {
+				$ocLazyLoad.load(mod.subModule);
+			});
+	}
 }
+
