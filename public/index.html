@@ -62,7 +62,14 @@
 			</nav>
 		</div>
 
-		<ui-view ng-class="{{stateNameClass}}"></ui-view>
+		<ui-view class="content ng-hide {{stateNameClass}}" ng-show="loading === false"></ui-view>
+		<div class="content loading" ng-hide="loading === false">
+			<div class="container">
+				<div class="column-xs-12 text-center">
+					Loading...
+				</div>
+			</div>
+		</div>
 
 		<script src="js/main.min.js"></script>
 

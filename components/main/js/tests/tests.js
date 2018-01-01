@@ -24,6 +24,8 @@ require('./main.test');
 require('./states.helper.test');
 require('./main.helper.test');
 
+require('../../../home/home.test');
 require('../../../lazy/lazy.test');
+require('../../../page404/page404.test');
 
 mocha.run();

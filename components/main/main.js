@@ -7,3 +7,6 @@ import './js/vendor';
 import './js/app.module';
 import './js/config';
 import './js/run';
+
+import '../home/home';
+import '../page404/page404';
