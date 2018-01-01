@@ -1,4 +1,4 @@
-import componentsHelper from '../main/js/components.helper';
+import mainHelper from '../main/js/main.helper';
 
 const name = 'lazy',
 	template = require('./' + name + '.html'),
@@ -7,18 +7,18 @@ const name = 'lazy',
 
 require('./' + name + '.styl');
 
-componentsHelper.setModule({
+mainHelper.setModule({
 	moduleName
 });
 
-componentsHelper.setComponent({
+mainHelper.setComponent({
 	name,
 	template,
 	controller,
 	moduleName
 });
 
-componentsHelper.setConfig({
+mainHelper.setConfig({
 	name,
 	moduleName
 });

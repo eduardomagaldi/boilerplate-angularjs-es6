@@ -22,7 +22,7 @@ require('angular-mocks');
 require('./main.test');
 
 require('./states.helper.test');
-require('./components.helper.test');
+require('./main.helper.test');
 
 require('../../../lazy/lazy.test');
 

@@ -1,11 +1,11 @@
-import componentsHelper from '../components.helper';
+import mainHelper from '../main.helper';
 
-describe('componentsHelper', function() {
+describe('mainHelper', function() {
 	describe('setModule', function() {
 		it('should create module correctly', function() {
 			const spyModule = sinon.spy(angular, 'module');
 
-			componentsHelper.setModule({moduleName: 'mn'});
+			mainHelper.setModule({moduleName: 'mn'});
 
 			chai.assert(
 				spyModule.calledWithExactly(
@@ -22,7 +22,7 @@ describe('componentsHelper', function() {
 		it('should create component correctly', function() {
 			const spyComponent = sinon.spy(angular.module('mn'), 'component');
 
-			componentsHelper.setComponent({
+			mainHelper.setComponent({
 				name: 'compName',
 				moduleName: 'mn',
 				template: 't',
@@ -49,7 +49,7 @@ describe('componentsHelper', function() {
 			const spyConfig = sinon.spy(angular.module('mn'), 'config');
 			let args;
 
-			componentsHelper.setConfig({
+			mainHelper.setConfig({
 				moduleName: 'mn'
 			});
 
@@ -66,11 +66,11 @@ describe('componentsHelper', function() {
 			let spyConfig2;
 			const func = function() {};
 
-			componentsHelper.setModule({moduleName: 'mn2'});
+			mainHelper.setModule({moduleName: 'mn2'});
 
 			spyConfig2 = sinon.spy(angular.module('mn2'), 'config');
 
-			componentsHelper.setConfig({
+			mainHelper.setConfig({
 				moduleName: 'mn2',
 				config: func
 			});
