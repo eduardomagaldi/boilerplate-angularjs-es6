@@ -8,7 +8,7 @@ function run($transitions, $rootScope) {
 		$rootScope.stateNameClass = 'state-' + $transition.$to().name;
 	});
 
-	$transitions.onEnter({}, function($state, $transition) {
+	$transitions.onEnter({}, ($state, $transition) => {
 		console.log('transition onEnter', $state, $transition);
 	});
 
