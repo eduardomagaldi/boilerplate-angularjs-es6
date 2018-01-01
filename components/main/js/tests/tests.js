@@ -1,3 +1,5 @@
+/* eslint-disable angular/window-service */
+
 import '../vendor';
 
 require('mocha/mocha.css');
@@ -17,9 +19,13 @@ mocha.setup({
 
 require('angular-mocks');
 
+angular.mock.module('app');
+
 require('./main.test');
 
 require('./states.helper.test');
 require('./components.helper.test');
+
+require('../../../lazy/lazy.test');
 
 mocha.run();

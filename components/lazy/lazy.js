@@ -7,7 +7,6 @@ const name = 'lazy',
 
 require('./' + name + '.styl');
 
-
 componentsHelper.setModule({
 	moduleName
 });
@@ -17,7 +16,7 @@ componentsHelper.setComponent({
 	template,
 	controller,
 	moduleName
-})
+});
 
 componentsHelper.setConfig({
 	name,
