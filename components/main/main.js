@@ -4,6 +4,6 @@ if (module.hot) {
 
 import './js/vendor';
 
-import './js/app';
+import './js/app.module';
 import './js/config';
 import './js/run';

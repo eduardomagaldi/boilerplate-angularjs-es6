@@ -15,7 +15,7 @@
 		"bootstrap": "^3.3.7",
 		"chai": "^4.1.2",
 		"css-loader": "^0.28.7",
-		"eslint": "^4.12.1",
+		"eslint": "^4.14.0",
 		"eslint-plugin-angular": "^3.1.1",
 		"express": "^4.16.2",
 		"extract-text-webpack-plugin": "^3.0.2",
@@ -35,7 +35,8 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"dev": "webpack-dev-server --hot --inline --watch --progress",
-		"prod": "webpack -p --progress && node server"
+		"prod": "webpack -p --progress && node server",
+		"lint": "eslint ./components/**/*.js"
 	},
 	"repository": {
 		"type": "git",

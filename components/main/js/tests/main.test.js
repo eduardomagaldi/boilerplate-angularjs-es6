@@ -3,7 +3,7 @@ describe('Main module', () => {
 		it('should create main module', () => {
 			const spyModule = sinon.spy(angular, 'module');
 
-			require('../app.js');
+			require('../app.module.js');
 
 			chai.assert(spyModule.calledOnce);
 			chai.assert(spyModule.calledWith('app'));

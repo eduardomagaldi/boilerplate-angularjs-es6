@@ -90,6 +90,7 @@
 		"radix": "error",
 
 		"angular/function-type": [2, "named"],
+		"angular/file-name": [2,{"typeSeparator":"dot","ignoreTypeSuffix":true}],
 		"angular/module-getter": 0
 	}
 }
