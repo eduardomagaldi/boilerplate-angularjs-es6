@@ -9,8 +9,9 @@ const path = require('path'),
 
 	mainStyleRegEx = /main\.styl$/,
 
-	lazyCSSLoader = 'style-loader!css-loader!stylus-loader',
-	bundleCSSLoader = ExtractTextPlugin.extract({
+	lazyStylusLoader = 'style-loader!css-loader!stylus-loader',
+	lazyCSSLoader = 'style-loader!css-loader',
+	bundleStylusLoader = ExtractTextPlugin.extract({
 		fallback: 'style-loader',
 		use: ['css-loader', 'stylus-loader']
 	});
@@ -25,8 +26,8 @@ module.exports = {
 
 	entry: {
 		main: './components/main/main.js',
-		tests: './components/main/tests.js',
-		styles: './components/main/main.styl'
+		styles: './components/main/main.styl',
+		tests: './components/main/js/tests/tests.js',
 	},
 
 	output: {
@@ -44,7 +45,9 @@ module.exports = {
 	// 	path: path.join(__dirname, 'public'),
 	// 	filename: '[name]',
 	// },
-
+	node: {
+		fs: 'empty'
+	},
 	module: {
 		loaders: [
 			{
@@ -55,10 +58,16 @@ module.exports = {
 
 			{ //main.css required with javascript in dev and bundled (unobtrusive css) in prod
 				test: mainStyleRegEx,
-				loader: prod ? bundleCSSLoader : lazyCSSLoader
+				loader: prod ? bundleStylusLoader : lazyStylusLoader
 			},
 			{ //all other css required with javascript and lazy loaded
 				test: /\.styl$/,
+				loader: lazyStylusLoader,
+				exclude: mainStyleRegEx
+			},
+
+			{ //all other css required with javascript and lazy loaded
+				test: /\.css$/,
 				loader: lazyCSSLoader,
 				exclude: mainStyleRegEx
 			},

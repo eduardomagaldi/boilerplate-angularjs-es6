@@ -26,6 +26,7 @@
 		"sinon": false,
 		"expect": false,
 		"window": false,
+		"mocha": false,
 		"it": false
 	},
 	"rules": {

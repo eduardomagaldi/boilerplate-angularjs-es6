@@ -1,16 +1,22 @@
-import statesHelper from './states.helper';
+import statesHelper from '../states.helper';
 
 describe('statesHelper', function() {
 	var mockStateProvider,
 		spy;
 
 	describe('setState', function() {
+		console.log('window.beforeEach', window.beforeEach);
+
 		beforeEach(function() {
 			mockStateProvider = {
 				state: () => {}
 			};
 
 			spy = sinon.spy(mockStateProvider, 'state');
+		});
+
+		afterEach(function() {
+			mockStateProvider.state.restore();
 		});
 
 		it('should set simple state correctly', function() {

@@ -1,4 +1,4 @@
-import componentsHelper from './components.helper';
+import componentsHelper from '../components.helper';
 
 describe('componentsHelper', function() {
 	describe('setModule', function() {
@@ -13,6 +13,8 @@ describe('componentsHelper', function() {
 					['ui.router']
 				)
 			);
+
+			angular.module.restore();
 		});
 	});
 
@@ -37,6 +39,8 @@ describe('componentsHelper', function() {
 					}
 				)
 			);
+
+			angular.module('mn').component.restore();
 		});
 	});
 
@@ -54,6 +58,8 @@ describe('componentsHelper', function() {
 			args = spyConfig.firstCall.args[0];
 
 			chai.expect(args).to.be.a('function');
+
+			angular.module('mn').config.restore();
 		});
 
 		it('should run config correctly with passed function', function() {
@@ -73,6 +79,8 @@ describe('componentsHelper', function() {
 			chai.assert(
 				spyConfig2.calledWithExactly(func)
 			);
+
+			angular.module('mn2').config.restore();
 		});
 	});
 });

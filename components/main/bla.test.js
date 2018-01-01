@@ -1,1 +1,0 @@
-console.log('bla.test.js');
