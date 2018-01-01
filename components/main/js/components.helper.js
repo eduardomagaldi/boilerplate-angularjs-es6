@@ -27,7 +27,6 @@ module.exports = {
 
 		config.$inject = ['$stateProvider'];
 		function config($stateProvider) {
-			console.log('default config');
 			statesHelper.setState($stateProvider, {
 				name: options.name
 			});

@@ -1,3 +1,5 @@
+/* eslint angular/window-service: 0 */
+
 import '../vendor';
 
 require('mocha/mocha.css');

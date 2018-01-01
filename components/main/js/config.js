@@ -24,7 +24,7 @@ function config(
 	});
 
 	$stateProvider.onInvalid(($to$, $from$) => {
-		console.error('onInvalid', $to$, $from$);
+		console.error('onInvalid', $to$, $from$); // eslint-disable-line no-console
 	});
 
 	$urlRouterProvider.otherwise('/');
