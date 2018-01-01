@@ -1,13 +1,11 @@
 import statesHelper from '../states.helper';
 
-describe('statesHelper', function() {
+describe('statesHelper', () => {
 	var mockStateProvider,
 		spy;
 
-	describe('setState', function() {
-		console.log('window.beforeEach', window.beforeEach);
-
-		beforeEach(function() {
+	describe('setState', () => {
+		beforeEach(() => {
 			mockStateProvider = {
 				state: () => {}
 			};
@@ -15,11 +13,11 @@ describe('statesHelper', function() {
 			spy = sinon.spy(mockStateProvider, 'state');
 		});
 
-		afterEach(function() {
+		afterEach(() => {
 			mockStateProvider.state.restore();
 		});
 
-		it('should set simple state correctly', function() {
+		it('should set simple state correctly', () => {
 			statesHelper.setState(mockStateProvider, {name: 'statename'});
 
 			chai.assert(
@@ -31,7 +29,7 @@ describe('statesHelper', function() {
 			);
 		});
 
-		it('should set lazy state correctly', function() {
+		it('should set lazy state correctly', () => {
 			let args;
 
 			statesHelper.setState(
@@ -50,7 +48,7 @@ describe('statesHelper', function() {
 			chai.expect(args.url).to.equal('/statename');
 		});
 
-		it('should overwrite all default properties', function() {
+		it('should overwrite all default properties', () => {
 			let args;
 
 			statesHelper.setState(

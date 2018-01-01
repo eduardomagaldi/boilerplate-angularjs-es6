@@ -26,9 +26,12 @@ describe('Main module', () => {
 		it('should have set at least 2 states in module', () => {
 			angular.mock.module('app');
 
-			angular.mock.inject(($state) => {
+			angular.mock.inject(['$state', injectedFunction]);
+
+			function injectedFunction($state) {
+				console.log('$state', $state);
 				chai.assert($state.get().length >= 2);
-			});
+			}
 		});
 	});
 
