@@ -22,4 +22,6 @@ require('./main.test');
 require('./states.helper.test');
 require('./components.helper.test');
 
+require('../../../lazy/lazy.test');
+
 mocha.run();

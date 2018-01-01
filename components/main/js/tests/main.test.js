@@ -29,7 +29,6 @@ describe('Main module', () => {
 			angular.mock.inject(['$state', injectedFunction]);
 
 			function injectedFunction($state) {
-				console.log('$state', $state);
 				chai.assert($state.get().length >= 2);
 			}
 		});
