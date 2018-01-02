@@ -41,20 +41,16 @@
 						<li>
 							<a href="tests">Tests</a>
 						</li>
-						<li>
-							<a href="#">About us</a>
-						</li>
-						<li>
-							<a href="#">Products</a>
-						</li>
-						<li class="dropdown">
-							<a >Contact <span class="caret"></span></a>
+						<li ui-sref="animals" class="dropdown">
+							<a ui-sref="animals">Animals <span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="#">Action</a></li>
-								<li><a href="#">Another action</a></li>
-								<li><a href="#">Something else here</a></li>
-								<li role="separator" class="divider"></li>
-								<li><a href="#">Separated link</a></li>
+								<li><a ui-sref="animals.type({'animalType':'Mammal'})">Mammals</a></li>
+								<li><a ui-sref="animals.type({'animalType':'Bird'})">Birds</a></li>
+								<li><a ui-sref="animals.type({'animalType':'Reptile'})">Reptiles</a></li>
+								<li><a ui-sref="animals.type({'animalType':'Fish'})">Fishs</a></li>
+								<li><a ui-sref="animals.type({'animalType':'Amphibian'})">Amphibians</a></li>
+								<li><a ui-sref="animals.type({'animalType':'Bug'})">Bugs</a></li>
+								<li><a ui-sref="animals.type({'animalType':'Invertebrate'})">Invertebrates</a></li>
 							</ul>
 						</li>
 					</ul>

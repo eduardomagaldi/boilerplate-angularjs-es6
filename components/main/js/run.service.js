@@ -11,14 +11,18 @@ function runService($transitions, $rootScope) {
 		});
 
 		$transitions.onSuccess({}, ($transition) => {
-			console.log('onSuccess', $transition.$to().name); // eslint-disable-line no-console
+			console.log('onSuccess', $transition.$to().name, $transition); // eslint-disable-line no-console
 			$rootScope.loading = false;
 			$rootScope.stateName = $transition.$to().name;
 			$rootScope.stateNameClass = 'state-' + $transition.$to().name;
 		});
 
-		$transitions.onError({ to: 'stateName' }, function($error) {
-			console.error('transition onError', $error); // eslint-disable-line no-console
+		$transitions.onError({}, function(transition) {
+			console.error('transition onError error:', transition.error()); // eslint-disable-line no-console
 		});
+
+		// $transitions.onError({}, function(transition) {
+		// 	console.log("Error while leaving 'home' state: " + transition.error());
+		// });
 	};
 }

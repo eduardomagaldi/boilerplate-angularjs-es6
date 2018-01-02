@@ -11,12 +11,31 @@ module.exports = {
 	},
 
 	setComponent: (options) => {
+		let resultOptions = {};
+
+		if (options.controller) {
+			resultOptions.controller = options.controller;
+			resultOptions.controllerAs = 'vm';
+		}
+
+		resultOptions = {
+			...resultOptions,
+			template: options.template
+		};
+
+		console.log('========= setComponent:', options.moduleName, options.name, resultOptions);
+
 		angular.module(options.moduleName)
-			.component(options.name, {
-				template: options.template,
-				controller: options.controller,
-				controllerAs: 'vm'
-			});
+			.component(options.name, resultOptions);
+	},
+
+	setAllComponents: function(componentList) {
+		var that = this;
+
+		componentList.forEach(function(componentOptions) {
+			console.log('componentOptions', componentOptions);
+			that.setComponent(componentOptions);
+		});
 	},
 
 	setConfig: (options) => {

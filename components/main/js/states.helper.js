@@ -4,8 +4,6 @@ module.exports = {
 				url: '/' + stateOptions.name
 			},
 			resultOptions,
-			// name;
-
 			stateName = stateOptions.name;
 
 		if (stateOptions.lazy) {
@@ -21,7 +19,7 @@ module.exports = {
 			name: stateName
 		};
 
-		// resultOptions.name = stateName;
+		console.log('====> setState:', resultOptions);
 
 		$stateProvider.state(resultOptions);
 
