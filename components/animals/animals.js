@@ -14,23 +14,23 @@ mainHelper.setModule({
 
 // require('./' + name + '.data.service');
 
-angular.module('app.animals').component('people', {
-  bindings: { people: '<' },
+// angular.module('app.animals').component('people', {
+//   bindings: { people: '<' },
 
-  template: '<div class="flex-h">' +
-            '  <div class="people">' +
-            '    <h3>Some people:</h3>' +
-            '    <ul>' +
-            '      <li ng-repeat="person in $ctrl.people">' +
-            '        <a ui-sref-active="active" ui-sref="people.person({ personId: person.id })">' +
-            '          {{person.type}}' +
-            '        </a>' +
-            '      </li>' +
-            '    </ul>' +
-            '  </div>' +
-            '  <ui-view></ui-view>' +
-            '</div>'
-});
+//   template: '<div class="flex-h">' +
+//             '  <div class="people">' +
+//             '    <h3>Some people:</h3>' +
+//             '    <ul>' +
+//             '      <li ng-repeat="person in $ctrl.people">' +
+//             '        <a ui-sref-active="active" ui-sref="people.person({ personId: person.id })">' +
+//             '          {{person.type}}' +
+//             '        </a>' +
+//             '      </li>' +
+//             '    </ul>' +
+//             '  </div>' +
+//             '  <ui-view></ui-view>' +
+//             '</div>'
+// });
 
 angular.module('app.animals').service('PeopleService', function($http) {
   var service = {
@@ -63,6 +63,14 @@ mainHelper.setComponent({
 	bindings: {
 		animals: '<'
 	}
+});
+
+mainHelper.setComponent({
+	name: 'people',
+	template,
+	// controller,
+	moduleName,
+	bindings: { people: '<' },
 });
 
 mainHelper.setConfig({

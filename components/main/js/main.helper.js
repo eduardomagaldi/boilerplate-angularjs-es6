@@ -19,9 +19,12 @@ module.exports = {
 		}
 
 		resultOptions = {
+			...options,
 			...resultOptions,
 			template: options.template
 		};
+
+		console.log('set Component', options.name, resultOptions);
 
 		angular.module(options.moduleName)
 			.component(options.name, resultOptions);
