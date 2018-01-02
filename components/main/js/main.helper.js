@@ -23,8 +23,6 @@ module.exports = {
 			template: options.template
 		};
 
-		console.log('========= setComponent:', options.moduleName, options.name, resultOptions);
-
 		angular.module(options.moduleName)
 			.component(options.name, resultOptions);
 	},

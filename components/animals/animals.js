@@ -12,97 +12,98 @@ mainHelper.setModule({
 	moduleName
 });
 
-mainHelper.setConfig({
-	name,
-	moduleName,
-	config
+// require('./' + name + '.data.service');
+
+angular.module('app.animals').component('people', {
+  bindings: { people: '<' },
+
+  template: '<div class="flex-h">' +
+            '  <div class="people">' +
+            '    <h3>Some people:</h3>' +
+            '    <ul>' +
+            '      <li ng-repeat="person in $ctrl.people">' +
+            '        <a ui-sref-active="active" ui-sref="people.person({ personId: person.id })">' +
+            '          {{person.type}}' +
+            '        </a>' +
+            '      </li>' +
+            '    </ul>' +
+            '  </div>' +
+            '  <ui-view></ui-view>' +
+            '</div>'
+});
+
+angular.module('app.animals').service('PeopleService', function($http) {
+  var service = {
+    getAllPeople: function() {
+      return $http.get('../data/animals.json', { cache: true }).then(function(resp) {
+      	console.log('resp.data', resp.data);
+        return resp.data;
+      });
+    },
+
+    getPerson: function(id) {
+      function personMatchesParam(person) {
+        return person.id === id;
+      }
+
+      return service.getAllPeople().then(function (people) {
+        return people.find(personMatchesParam)
+      });
+    }
+  }
+
+  return service;
 });
 
 mainHelper.setComponent({
 	name,
 	template,
 	controller,
-	moduleName
+	moduleName,
+	bindings: {
+		animals: '<'
+	}
 });
 
-mainHelper.setComponent({
-	name: 'bla',
-	template: '<h1>bla</bla>',
-	controller: function() {console.log('bla');},
-	moduleName
+mainHelper.setConfig({
+	name,
+	moduleName,
+	config
 });
-
-// require('../animalsType/animalsType.js');
 
 module.exports = moduleName;
 
+// getAll.$inject = ['animalsDataService'];
+// function getAll(animalsDataService) {
+// 	return animalsDataService.getAll();
+// }
+
 config.$inject = ['$stateProvider'];
 function config($stateProvider) {
-	// statesHelper.setState($stateProvider, {
-	// 	name: 'animals'
-	// });
+	statesHelper.setState($stateProvider, {
+		name: name,
+		// resolve: {
+		// 	animals: getAll
+		// }
+	});
 
 	// statesHelper.setState($stateProvider, {
-	// 	name: 'animals.type',
-	// 	// parent: 'animals',
-	// 	url: '/type/{animalType}',
-	// 	component: 'bla'
+	// 	name: name,
+	// 	resolve: {
+	// 		animals: getAll
+	// 	}
 	// });
 
+	statesHelper.setState($stateProvider, {
 
-		$stateProvider
-		    .state('home2', {
-		        url: '/home2',
-		         // template: 'templates/settings.html'
-		        // views: {
-		        //     $default: {
-		        //     	template: 'templates/settings.html ==> <ui-view></ui-view>'
-		        //     }
-	        	// },
+		     name: 'people',
+		     url: '/people',
+		     component: 'people',
+		     resolve: {
+		       people: function(PeopleService) {
+		         return PeopleService.getAllPeople();
+		       }
+		     }
 
-	        	views: {
-	        	   $default: {
-	        	     template: 'home2<div ui-view></div>'
-	        	   },
-	        	 }
-		    })
-		    .state('settings', {
-		        url: '/settings',
-		         // template: 'templates/settings.html'
-		        // views: {
-		        //     $default: {
-		        //     	template: 'templates/settings.html ==> <ui-view></ui-view>'
-		        //     }
-	        	// },
-
-	        	views: {
-	        	   $default: {
-	        	     // template: '<div ui-view></div>',
-	        	     template: '<div ui-view>settings</div>'
-	        	   },
-	        	   main: {
-	        	     template: '<div ui-view>settings</div>'
-	        	   },
-	        	 }
-		    })
-		    .state('settings.profile', {
-		        url: '/profile',
-		        // template: 'templates/profile.html',
-		        // views: {
-		        //     'main': { template: 'templates/profile.html' }
-		        // }
-		        views: {
-		           $default: {
-		             // template: '<div ui-view></div>',
-		             template: 'profile default'
-		           },
-		           main: {
-		             template: 'profile'
-		           },
-		         }
-		    })
-		    .state('settings.account', {
-		        url: '/account',
-		        template: 'templates/account.html'
-		    });
+	});
 }

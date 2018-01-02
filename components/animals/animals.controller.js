@@ -1,5 +1,7 @@
 module.exports = function() {
 	const vm = this;
 
-	vm.title = 'Animals';
+	vm.title = 'animals title';
+
+	console.log('vm', vm);
 };
