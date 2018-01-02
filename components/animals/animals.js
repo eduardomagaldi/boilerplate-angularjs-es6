@@ -38,13 +38,71 @@ module.exports = moduleName;
 
 config.$inject = ['$stateProvider'];
 function config($stateProvider) {
-	statesHelper.setState($stateProvider, {
-		name: name
-	});
+	// statesHelper.setState($stateProvider, {
+	// 	name: 'animals'
+	// });
 
-	statesHelper.setState($stateProvider, {
-		name: name + '.type',
-		url: '/{animalType}',
-		component: 'bla'
-	});
+	// statesHelper.setState($stateProvider, {
+	// 	name: 'animals.type',
+	// 	// parent: 'animals',
+	// 	url: '/type/{animalType}',
+	// 	component: 'bla'
+	// });
+
+
+		$stateProvider
+		    .state('home2', {
+		        url: '/home2',
+		         // template: 'templates/settings.html'
+		        // views: {
+		        //     $default: {
+		        //     	template: 'templates/settings.html ==> <ui-view></ui-view>'
+		        //     }
+	        	// },
+
+	        	views: {
+	        	   $default: {
+	        	     template: 'home2<div ui-view></div>'
+	        	   },
+	        	 }
+		    })
+		    .state('settings', {
+		        url: '/settings',
+		         // template: 'templates/settings.html'
+		        // views: {
+		        //     $default: {
+		        //     	template: 'templates/settings.html ==> <ui-view></ui-view>'
+		        //     }
+	        	// },
+
+	        	views: {
+	        	   $default: {
+	        	     // template: '<div ui-view></div>',
+	        	     template: '<div ui-view>settings</div>'
+	        	   },
+	        	   main: {
+	        	     template: '<div ui-view>settings</div>'
+	        	   },
+	        	 }
+		    })
+		    .state('settings.profile', {
+		        url: '/profile',
+		        // template: 'templates/profile.html',
+		        // views: {
+		        //     'main': { template: 'templates/profile.html' }
+		        // }
+		        views: {
+		           $default: {
+		             // template: '<div ui-view></div>',
+		             template: 'profile default'
+		           },
+		           main: {
+		             template: 'profile'
+		           },
+		         }
+		    })
+		    .state('settings.account', {
+		        url: '/account',
+		        template: 'templates/account.html'
+		    });
 }
