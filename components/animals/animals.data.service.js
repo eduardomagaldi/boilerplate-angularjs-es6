@@ -8,14 +8,19 @@ service.inject = ['$http'];
 function service($http) {
 	return {
 		getAll: function() {
-			return $http.get('../data/animals.json')
-				.then(function(resp) {
-					console.log('resp.data', resp.data);
-					return resp.data;
-				}, function(error) {
-					console.error('error', error);
-				});
-		}
-	}
-}
+			return $http.get('../data/animals.json', { cache: true }).then(function(resp) {
+				return resp.data;
+			});
+		},
 
+		getType: function(id) {
+			function personMatchesParam(person) {
+				return person.id === id;
+			}
+
+			return service.getAllPeople().then(function (people) {
+				return people.find(personMatchesParam)
+			});
+		}
+	};
+}

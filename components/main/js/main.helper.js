@@ -19,9 +19,8 @@ module.exports = {
 		}
 
 		resultOptions = {
-			...options,
 			...resultOptions,
-			template: options.template
+			...options
 		};
 
 		console.log('set Component', options.name, resultOptions);
