@@ -35,14 +35,10 @@ module.exports = moduleName;
 config.$inject = ['$stateProvider'];
 function config($stateProvider) {
 	statesHelper.setState($stateProvider, {
-
-		name: 'animals',
-		url: '/animals',
-		component: 'animals',
+		name,
 		resolve: {
 			animals: resolve
 		}
-
 	});
 }
 

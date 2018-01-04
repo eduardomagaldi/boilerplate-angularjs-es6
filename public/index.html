@@ -18,8 +18,6 @@
 			<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
 		<![endif]-->
 
-		{{loading}}
-
 		<div class="container">
 			<nav class="navbar navbar-inverse">
 				<div class="navbar-header">
@@ -52,13 +50,13 @@
 						<li ui-sref="animals" class="dropdown">
 							<a ui-sref="animals">Animals <span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a ui-sref="animals.type({'animalType':'Mammal'})">Mammals</a></li>
-								<li><a ui-sref="animals.type({'animalType':'Bird'})">Birds</a></li>
-								<li><a ui-sref="animals.type({'animalType':'Reptile'})">Reptiles</a></li>
-								<li><a ui-sref="animals.type({'animalType':'Fish'})">Fishs</a></li>
-								<li><a ui-sref="animals.type({'animalType':'Amphibian'})">Amphibians</a></li>
-								<li><a ui-sref="animals.type({'animalType':'Bug'})">Bugs</a></li>
-								<li><a ui-sref="animals.type({'animalType':'Invertebrate'})">Invertebrates</a></li>
+								<li><a ui-sref="animalsType({animalType:'Mammal'})">Mammals</a></li>
+								<li><a ui-sref="animalsType({animalType:'Bird'})">Birds</a></li>
+								<li><a ui-sref="animalsType({animalType:'Reptile'})">Reptiles</a></li>
+								<li><a ui-sref="animalsType({animalType:'Fish'})">Fishs</a></li>
+								<li><a ui-sref="animalsType({animalType:'Amphibian'})">Amphibians</a></li>
+								<li><a ui-sref="animalsType({animalType:'Bug'})">Bugs</a></li>
+								<li><a ui-sref="animalsType({animalType:'Invertebrate'})">Invertebrates</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -66,7 +64,6 @@
 			</nav>
 		</div>
 
-		{{loading}}
 		<ui-view class="content ng-hide {{stateNameClass}}" ng-show="loading === false"></ui-view>
 		<div class="content loading" ng-hide="loading === false">
 			<div class="container">
@@ -76,9 +73,7 @@
 			</div>
 		</div>
 
-
-
-		<ui-view class="content ng-hide" ng-show="loading !== undefined && loading !== true"></ui-view>
+		<!-- <ui-view class="content ng-hide" ng-show="loading !== undefined && loading !== true"></ui-view>
 		<div ng-show="loading" class="content">
 			<div class="container loading">
 				<div class="col-md-12">
@@ -87,10 +82,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
-
-
-
+		</div> -->
 
 		<script src="js/main.min.js"></script>
 

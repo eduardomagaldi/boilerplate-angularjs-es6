@@ -32,11 +32,11 @@ function config(
 		lazy: true
 	});
 
-	// statesHelper.setState($stateProvider, {
-	// 	name: 'animalsType',
-	// 	url: '/animals/{animalType}',
-	// 	lazy: true
-	// });
+	statesHelper.setState($stateProvider, {
+		name: 'animalsType',
+		url: '/animals/{animalType}',
+		lazy: true
+	});
 
 	statesHelper.setState($stateProvider, {
 		name: 'page404',
