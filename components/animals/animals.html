@@ -5,7 +5,7 @@
 		<h3>Animal Types:</h3>
 		<ul>
 			<li ng-repeat="animal in vm.animals">
-				<a ui-sref-active="active" ui-sref="animalType({animalType: animal.type})">
+				<a ui-sref-active="active" ui-sref="animalsType({animalType: animal.type})">
 					{{animal.type}}
 				</a>
 			</li>
