@@ -38,12 +38,13 @@ function config($stateProvider) {
 		name,
 		url: '/animals/{animalType}',
 		resolve: {
-			animalsType: resolve
+			animalsType: [
+				'animalsTypeDataService',
+				'$stateParams',
+				function resolve(animalsTypeDataService, $stateParams) {
+					return animalsTypeDataService.getByType($stateParams.animalType);
+				}
+			]
 		}
 	});
-}
-
-resolve.$inject = ['animalsTypeDataService', '$stateParams'];
-function resolve(animalsTypeDataService, $stateParams) {
-	return animalsTypeDataService.getByType($stateParams.animalType);
 }

@@ -27,7 +27,7 @@ mainHelper.setComponent({
 mainHelper.setConfig({
 	name,
 	moduleName,
-	config
+	config: config
 });
 
 module.exports = moduleName;
@@ -37,12 +37,9 @@ function config($stateProvider) {
 	statesHelper.setState($stateProvider, {
 		name,
 		resolve: {
-			animals: resolve
+			animals: ['animalsDataService', function(animalsDataService) {
+				return animalsDataService.getAll();
+			}]
 		}
 	});
-}
-
-resolve.$inject = ['animalsDataService'];
-function resolve(animalsDataService) {
-	return animalsDataService.getAll();
 }

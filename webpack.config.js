@@ -49,6 +49,7 @@ module.exports = {
 		fs: 'empty'
 	},
 	module: {
+		exprContextCritical: false,
 		loaders: [
 			{
 				test: /\.js$/,
