@@ -16,6 +16,7 @@ Front-end project by [Eduardo Magaldi](https://github.com/eduardomagaldi), using
 - ui-router
 - Stylus
 - Twitter Bootstrap
+- HTML5 Boilerplate
 - Babel (ES6 and ES7)
 - Webpack
 - oc.LazyLoad
