@@ -1,6 +1,6 @@
 # Boilerplate Angular.js ES6
 
-Go to [public folder](https://eduardomagaldi.github.io/boilerplate-angularjs-es6/public/).
+Check out the [demo](https://eduardomagaldi.github.io/boilerplate-angularjs-es6/public/).
 
 ## TLDR;
 
@@ -26,7 +26,7 @@ Front-end project by [Eduardo Magaldi](https://github.com/eduardomagaldi), using
 - Chai
 - Sinon
 
-This project is inspired by [John Papa's Angular 1 Style Guide](https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md).
+This project is inspired by [John Papa's Angular 1 Style Guide](https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md). You should read it for VERY USEFUL information about angular 1 development.
 
 ## Installing dependencies
 
@@ -50,15 +50,7 @@ To generate all bundles for production install dependencies and run:
 
 This will:
 
-1. Generate bundles from ```components/main```:
-```main.min.js```
-```test.min.js```
-```styles.min.css```
-
-and all lazy loaded bundles, like ```0.min.js```, ```1.min.js``` and so on...
-
-All files are generated into ```public``` folder.
-
+1. Generate bundles from ```components/main```: ```main.min.js```, ```test.min.js```, ```styles.min.css``` and all lazy loaded bundles, like ```0.min.js```, ```1.min.js``` and so on... All files are generated into ```public``` folder.
 2. Run an express server on ```public``` folder to test production mode.
 
 After bundles are created and with express server still running, go to [http://localhost:8080/public](http://localhost:8080/public) and you should see the home page.
