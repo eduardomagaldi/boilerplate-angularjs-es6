@@ -33,9 +33,11 @@ describe('mainHelper', function() {
 				spyComponent.calledWithExactly(
 					'compName',
 					{
-						template: 't',
 						controller: 'c',
-						controllerAs: 'vm'
+						controllerAs: 'vm',
+						name: 'compName',
+						moduleName: 'mn',
+						template: 't'
 					}
 				)
 			);

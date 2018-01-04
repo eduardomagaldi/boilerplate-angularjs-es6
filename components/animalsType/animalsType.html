@@ -1,12 +1,12 @@
 <div class="container">
 	<div class="column-xs-12">
-		<h1>{{vm.params.animalType}}</h1>
-
-		<h3>Animal Types:</h3>
+		<h1>{{vm.animalType}}</h1>
 		<ul>
 			<li ng-repeat="animal in vm.animalsType.list">
-				{{animal}}
+				<a ng-click="vm.loadImage(animal)">{{animal}}</a>
 			</li>
 		</ul>
+
+		<img ng-src="{{vm.src}}">
 	</div>
 </div>

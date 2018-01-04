@@ -28,6 +28,6 @@ require('../../../home/home.test');
 require('../../../lazy/lazy.test');
 require('../../../page404/page404.test');
 require('../../../animals/animals.test');
-// require('../../../animalsType/animalsType.test');
+require('../../../animalsType/animalsType.test');
 
 mocha.run();
