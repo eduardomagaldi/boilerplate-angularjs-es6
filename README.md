@@ -73,13 +73,7 @@ To start development install dependencies and run:
 
 This will:
 
-1. Generate bundles from ```components/main``` (in memory only):
-```main.min.js```
-```test.min.js```
-```styles.min.css```
-
-and all lazy loaded bundles, like ```0.min.js```, ```1.min.js``` and so on...
-
+1. Generate bundles from ```components/main``` (in memory only): ```main.min.js```, ```test.min.js```, ```styles.min.css``` and all lazy loaded bundles, like ```0.min.js```, ```1.min.js``` and so on...
 2. Run an webpack dev server to serve files from memory.
 3. Watch for changes in ```components/*``` folder.
 4. Rerun bundles after original files (in ```components``` folder) are changed in disk.
