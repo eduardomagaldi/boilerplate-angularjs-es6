@@ -1,3 +1,5 @@
+/* eslint-env node */
+
 const path = require('path'),
 	webpack = require('webpack'),
 	ExtractTextPlugin = require('extract-text-webpack-plugin'),
@@ -7,23 +9,26 @@ const path = require('path'),
 
 	mainStyleRegEx = /main\.styl$/,
 
-	lazyCSSLoader = 'style-loader!css-loader!stylus-loader',
-	bundleCSSLoader = ExtractTextPlugin.extract({
+	lazyStylusLoader = 'style-loader!css-loader!stylus-loader',
+	lazyCSSLoader = 'style-loader!css-loader',
+	bundleStylusLoader = ExtractTextPlugin.extract({
 		fallback: 'style-loader',
 		use: ['css-loader', 'stylus-loader']
 	});
 
 module.exports = {
-	entry: [
-		'./components/main/main.js',
-		'./components/main/main.styl'
-	],
+	// entry: [
+	// 	'./components/main/main.js',
+	// 	// './components/main/main.styl',
 
-	// entry: {
-	// 	'main': './components/main/main.js',
-	// 	'main': './components/main/main.styl',
-	// 	// 'bootstrap': './components/main/styles/bootstrap.less',
-	// },
+	// 	'./components/main/tests.js',
+	// ],
+
+	entry: {
+		main: './components/main/main.js',
+		styles: './components/main/main.styl',
+		tests: './components/main/js/tests/tests.js',
+	},
 
 	output: {
 		path: path.join(__dirname, 'public'),
@@ -40,8 +45,11 @@ module.exports = {
 	// 	path: path.join(__dirname, 'public'),
 	// 	filename: '[name]',
 	// },
-
+	node: {
+		fs: 'empty'
+	},
 	module: {
+		exprContextCritical: false,
 		loaders: [
 			{
 				test: /\.js$/,
@@ -51,10 +59,16 @@ module.exports = {
 
 			{ //main.css required with javascript in dev and bundled (unobtrusive css) in prod
 				test: mainStyleRegEx,
-				loader: prod ? bundleCSSLoader : lazyCSSLoader
+				loader: prod ? bundleStylusLoader : lazyStylusLoader
 			},
 			{ //all other css required with javascript and lazy loaded
 				test: /\.styl$/,
+				loader: lazyStylusLoader,
+				exclude: mainStyleRegEx
+			},
+
+			{ //all other css required with javascript and lazy loaded
+				test: /\.css$/,
 				loader: lazyCSSLoader,
 				exclude: mainStyleRegEx
 			},
@@ -62,6 +76,11 @@ module.exports = {
 			{
 				test: /\.(png|woff|woff2|eot|ttf|svg)$/,
 				loader: 'url-loader'
+			},
+
+			{
+				test: /\.html$/,
+				loader: 'html-loader'
 			}
 		]
 	},
