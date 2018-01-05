@@ -13,9 +13,10 @@ angular
 function service($http) {
 	return {
 		getAll: function() {
-			return $http.get('data/animals.json', { cache: true }).then(function(resp) {
-				return resp.data;
-			});
+			return $http.get('data/animals.json', { cache: true })
+				.then(function(resp) {
+					return resp.data;
+				});
 		}
 	};
 }
