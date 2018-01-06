@@ -23,8 +23,6 @@ module.exports = {
 			...options
 		};
 
-		console.log('set Component', options.name, resultOptions);
-
 		angular.module(options.moduleName)
 			.component(options.name, resultOptions);
 	},
@@ -33,7 +31,6 @@ module.exports = {
 		var that = this;
 
 		componentList.forEach(function(componentOptions) {
-			console.log('componentOptions', componentOptions);
 			that.setComponent(componentOptions);
 		});
 	},

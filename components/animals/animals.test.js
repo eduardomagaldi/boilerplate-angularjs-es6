@@ -15,31 +15,31 @@ describe(name + ' component', () => {
 		chai.expect(controller).to.be.a('function');
 	});
 
-	it('should set animalsDataService', () => {
+	it('should set ' + name + 'DataService', () => {
 		mainHelper.setModule({
-			moduleName: 'app.animals'
+			moduleName
 		});
 
-		const spy = sinon.spy(angular.module('app.animals'), 'factory');
+		const spy = sinon.spy(angular.module(moduleName), 'factory');
 
 		require('./' + name + '.data.service');
 
 		const args = spy.firstCall.args,
 			lastIndex = args[1].length - 1;
 
-		chai.assert(args[0] === 'animalsDataService');
+		chai.assert(args[0] === name + 'DataService');
 
 		chai.expect(args[1]).to.be.a('array');
 		chai.expect(args[1][lastIndex]).to.be.a('function');
 
-		angular.module('app.animals').factory.restore();
+		angular.module(moduleName).factory.restore();
 	});
 
-	it('should request animals data', (done) => {
-		angular.mock.module('app.animals');
+	it('should request ' + name + ' data', (done) => {
+		angular.mock.module(moduleName);
 		angular.mock.inject([
 			'$injector',
-			'animalsDataService',
+			name + 'DataService',
 			function($injector, animalsDataService) {
 				chai.expect(animalsDataService).to.be.a('object');
 				chai.expect(animalsDataService.getAll).to.be.a('function');
@@ -51,11 +51,16 @@ describe(name + ' component', () => {
 
 				$httpBackend.expectGET('data/animals.json');
 
-				const animals = animalsDataService.getAll();
+				let animals = animalsDataService.getAll();
 
 				animals.then((data) => {
 					chai.expect(data).to.be.a('array');
+
 					done();
+
+					$httpBackend.verifyNoOutstandingExpectation();
+					$httpBackend.verifyNoOutstandingRequest();
+					$httpBackend.resetExpectations();
 				});
 
 				$httpBackend.flush();

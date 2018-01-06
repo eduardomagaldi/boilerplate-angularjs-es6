@@ -20,8 +20,10 @@ function service($http) {
 			});
 		},
 		getAnimalImage: function(animal, callback) {
-			$http.get('data/image.json').then(function(resp) {
+			return $http.get('data/image.json').then(function(resp) {
 				callback(resp.data.media + '?t=' + new Date().getTime());
+
+				return resp.data;
 			});
 		}
 	};
