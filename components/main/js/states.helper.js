@@ -19,8 +19,6 @@ module.exports = {
 			name: stateName
 		};
 
-		console.log('====> setState:', resultOptions);
-
 		$stateProvider.state(resultOptions);
 
 		lazyLoad.$inject = ['transition'];

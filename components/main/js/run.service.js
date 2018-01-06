@@ -7,7 +7,6 @@ function runService($transitions, $rootScope) {
 	return () => {
 		$transitions.onEnter({}, ($state, $transition) => {
 			$rootScope.loading = true;
-			console.log('$rootScope.loading', $rootScope.loading);
 			console.log('transition onEnter', $state, $transition); // eslint-disable-line no-console
 		});
 
@@ -15,7 +14,6 @@ function runService($transitions, $rootScope) {
 			console.log('onSuccess', $transition.$to().name, $transition); // eslint-disable-line no-console
 
 			$rootScope.loading = false;
-			console.log('$rootScope.loading', $rootScope.loading);
 
 			$rootScope.stateName = $transition.$to().name;
 			$rootScope.stateNameClass = 'state-' + $transition.$to().name;

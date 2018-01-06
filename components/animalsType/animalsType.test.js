@@ -62,7 +62,7 @@ describe(name + ' component', () => {
 
 				$httpBackend.flush();
 			}
-		])
+		]);
 	});
 
 	it('should request ' + name + ' image data', (done) => {
@@ -82,9 +82,7 @@ describe(name + ' component', () => {
 				$httpBackend.expectGET('data/image.json');
 
 				let callbackMockFunction = sinon.spy(),
-					animalsType;
-
-				animalsType = animalsTypeDataService.getAnimalImage('Reptile', callbackMockFunction);
+					animalsType = animalsTypeDataService.getAnimalImage('Reptile', callbackMockFunction);
 
 				animalsType.then((data) => {
 					chai.expect(data).to.be.a('object');
@@ -94,6 +92,6 @@ describe(name + ' component', () => {
 
 				$httpBackend.flush();
 			}
-		])
+		]);
 	});
 });
