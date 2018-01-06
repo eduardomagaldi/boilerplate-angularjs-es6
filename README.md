@@ -89,3 +89,4 @@ To check for linting errors in all javascript files, run ```npm run lint```.
 
 1. Check why webpack is generating around 20 bundles when only a few are necessary.
 2. Check angular ui-router nested states.
+3. Check for file sizes.

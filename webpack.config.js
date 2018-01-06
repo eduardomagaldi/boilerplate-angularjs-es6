@@ -17,13 +17,6 @@ const path = require('path'),
 	});
 
 module.exports = {
-	// entry: [
-	// 	'./components/main/main.js',
-	// 	// './components/main/main.styl',
-
-	// 	'./components/main/tests.js',
-	// ],
-
 	entry: {
 		main: './components/main/main.js',
 		styles: './components/main/main.styl',
@@ -33,18 +26,8 @@ module.exports = {
 	output: {
 		path: path.join(__dirname, 'public'),
 		filename: 'js/[name].min.js',
-		// publicPath: 'http://localhost:8080/public/',
 	},
 
-	// entry: {
-	// 	'js/main.min.js': './components/main.js',
-	// 	// 'js/vendor.js': ['react', 'react-dom'],
-	// 	'css/main.min.css': './components/maincss.styl',
-	// },
-	// output: {
-	// 	path: path.join(__dirname, 'public'),
-	// 	filename: '[name]',
-	// },
 	node: {
 		fs: 'empty'
 	},
@@ -67,7 +50,7 @@ module.exports = {
 				exclude: mainStyleRegEx
 			},
 
-			{ //all other css required with javascript and lazy loaded
+			{
 				test: /\.css$/,
 				loader: lazyCSSLoader,
 				exclude: mainStyleRegEx
@@ -91,16 +74,14 @@ module.exports = {
 			$: 'jquery',
 			jQuery: 'jquery',
 			'window.jQuery': 'jquery',
-			Popper: ['popper.js', 'default'],
-			// Dropdown: 'exports-loader?Dropdown!bootstrap/js/dropdown',
+			Popper: ['popper.js', 'default']
 		})
 	],
 	devServer: {
 		contentBase: __dirname + '/public/',
-		// publicPath: __dirname + '/public/',
 		watchContentBase: true,
 		before(app) {
-			app.get('*/css/main.min.css', function(req, res) {
+			app.get('*/css/styles.min.css', function(req, res) {
 				res.set('Content-Type', 'text/css');
 				res.send('//overwritten in dev mode to work with HMR\n//this same file is required via javascript in main.js');
 			});
