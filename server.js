@@ -5,4 +5,4 @@ var express = require('express'),
 
 server.use('/public', express.static(__dirname + '/public'));
 
-server.listen(80);
+server.listen(8080);
